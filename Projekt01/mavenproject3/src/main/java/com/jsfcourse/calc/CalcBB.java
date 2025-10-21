@@ -11,27 +11,35 @@ import jakarta.faces.context.FacesContext;
 @RequestScoped
 //@SessionScoped
 public class CalcBB {
-	private String x;
-	private String y;
+	private String kwota;
+	private String termin;
+        private String procentowanie;
 	private Double result;
 
 	@Inject
 	FacesContext ctx;
 
-	public String getX() {
-		return x;
+	public String getKwota() {
+		return kwota;
 	}
 
-	public void setX(String x) {
-		this.x = x;
+	public void setKwota(String kwota) {
+		this.kwota = kwota;
+	}
+        public String getTermin() {
+		return termin;
 	}
 
-	public String getY() {
-		return y;
+	public void setTermin(String termin) {
+		this.termin = termin;
 	}
 
-	public void setY(String y) {
-		this.y = y;
+	public String getProcentowanie() {
+		return procentowanie;
+	}
+
+	public void setProcentowanie(String procentowanie) {
+		this.procentowanie = procentowanie;
 	}
 
 	public Double getResult() {
@@ -44,10 +52,21 @@ public class CalcBB {
 
 	public boolean doTheMath() {
 		try {
-			double x = Double.parseDouble(this.x);
-			double y = Double.parseDouble(this.y);
+			double kwota = Double.parseDouble(this.kwota);
+			double termin = Double.parseDouble(this.termin);
+                        double procentowanie = Double.parseDouble(this.procentowanie);
+                        if(kwota<=0||termin<=0||procentowanie<0){
+                        ctx.addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "parametry nie mogą być 0 lub mniej", null));
+                        return false;}
+                        
+                        double proc_mies = procentowanie/1200;
+                        double kwota_ogolem=kwota*(1+proc_mies*termin);
+                        result=kwota_ogolem/termin;
+                        
 
-			result = x + y;
+
+			
 
 			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operacja wykonana poprawnie", null));
 			return true;

@@ -9,16 +9,18 @@
 </h:head>
 <h:body>
 
-	<h1>JSF 01 - ziarno, formularz, parametry, nawigacja, messages</h1>
+	<h1>Kalkulator kredytowy</h1>
 
 	<h:form id="bla">
-  		x: <h:inputText value="#{calcBB.x}" />
+  		kwota: <h:inputText value="#{calcBB.kwota}" />
 		<br />
-  		y: <h:inputText value="#{calcBB.y}" />
+  		termin: <h:inputText value="#{calcBB.termin}" />
+		<br />
+  		procentowanie: <h:inputText value="#{calcBB.procentowanie}" />
 		<br />
 		<h:messages id="msg" />
 
-		<h:commandButton value="Dodaj" action="#{calcBB.calc()}"/>
+		<h:commandButton value="Oblić" action="#{calcBB.calc()}"/>
 		<br />
 		<h:commandButton value="Dodaj (AJAX)" action="#{calcBB.calc_AJAX()}">
 			<f:ajax execute="@form" render="msg" />
