@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:p="primefaces"
+        
+        
+        >
+<ui:composition template="/templates/page-template.xhtml">
+
+	<ui:define name="pageContent">
+
+		<p:panel header="Kalkulator">
+
+			<p:messages id="msg" />
+
+	 
+<style>
+    button.ui-button {
+        margin-right: .5rem;
+    }
+</style>
+	<h:form id="bla">
+  		kwota: <h:inputText value="#{calcBB.kwota}" />
+		<br />
+  		termin: <h:inputText value="#{calcBB.termin}" />
+		<br />
+  		procentowanie: <h:inputText value="#{calcBB.procentowanie}" />
+		<br />
+		<h:messages id="msg" />
+
+		<p:commandButton value="Oblić" styleClass="rounded-button" action="#{calcBB.calc()}"/>
+		<br />
+		<h:commandButton value="Dodaj (AJAX)" styleClass="rounded-button ui-button-secondary" action="#{calcBB.calc_AJAX()}">
+			<f:ajax execute="@form" render="msg" />
+		</h:commandButton>
+		<br />
+		<h:commandLink value="Informacje" action="#{calcBB.info()}" />
+	</h:form>
+</p:panel>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>
