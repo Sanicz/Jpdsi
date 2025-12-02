@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+
+    <f:metadata>
+        <f:viewParam name="p" value="#{perfumeEditGETBB.perfume.id}"
+                     converterMessage="Nieoczekiwany błąd"/>
+        <f:event type="preRenderView" listener="#{perfumeEditGETBB.onLoad()}" />
+    </f:metadata>
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <title>Perfume Edit</title>
+    </h:head>
+
+    <h:body style="background-color: #eee; margin: 0.5em;">
+
+        <p:panel toggleable="true" header="Edycja perfum">
+
+            <h:form rendered="#{perfumeEditGETBB.perfume != null}">
+                <h:panelGrid columns="3" cellpadding="5">
+
+                    <!-- Brand -->
+                    <h:outputLabel for="p-brand" value="Marka:" />
+                    <p:inputText id="p-brand" value="#{perfumeEditGETBB.perfume.brandName}"
+                                 required="true" requiredMessage="Podaj markę"
+                                 validatorMessage="maksymalnie 100 znaków">
+                        <f:validateLength maximum="100" />
+                    </p:inputText>
+                    <p:message for="p-brand" display="icon"/>
+
+                    <!-- Perfume name -->
+                    <h:outputLabel for="p-name" value="Nazwa perfum:" />
+                    <p:inputText id="p-name" value="#{perfumeEditGETBB.perfume.perfumeName}"
+                                 required="true" requiredMessage="Podaj nazwę perfum"
+                                 validatorMessage="maksymalnie 150 znaków">
+                        <f:validateLength maximum="150" />
+                    </p:inputText>
+                    <p:message for="p-name" display="icon"/>
+
+                    <!-- Year -->
+                    <h:outputLabel for="p-year" value="Rok produkcji:" />
+                    <p:inputText id="p-year" value="#{perfumeEditGETBB.perfume.yearOfProduction}"
+                                 converterMessage="Niepoprawny format liczby">
+                        <f:validateRegex pattern="[0-9]{4}" 
+                                          />
+                    </p:inputText>
+                    <p:message for="p-year" display="icon"/>
+
+                    <!-- Perfumer -->
+                    <h:outputLabel for="p-perfumer" value="Perfumiarz:" />
+                    <p:inputText id="p-perfumer" value="#{perfumeEditGETBB.perfume.perfumer}"
+                                 validatorMessage="maksymalnie 150 znaków">
+                        <f:validateLength maximum="150" />
+                    </p:inputText>
+                    <p:message for="p-perfumer" display="icon"/>
+
+                </h:panelGrid>
+
+                <p:messages id="msgs" />
+
+                <p:commandButton value="Zapisz"
+                                 action="#{perfumeEditGETBB.saveData()}"
+                                 style="margin-right: 1em;" 
+                                 update="@form" />
+
+                <p:button value="Anuluj" outcome="perfumeList" />
+            </h:form>
+
+        </p:panel>
+
+    </h:body>
+</html>
