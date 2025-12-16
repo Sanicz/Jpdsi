@@ -1,0 +1,8 @@
+com\jawaprojcourse\perfume\login.class
+com\jawaproj\dao\perfumeDAO.class
+com\jawaprojcourse\perfume\perfumeEditGETBB.class
+com\jawaprojcourse\perfume\perfumeListBB.class
+com\jawaproj\dao\userDAO.class
+com\jawaprojcourse\perfume\perfumeEditBB.class
+com\jawaproj\entities\Perfume.class
+com\jawaproj\entities\User.class
