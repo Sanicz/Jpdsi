@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:p="primefaces">
+
+<ui:composition template="/template/login_template.xhtml">
+
+    <ui:define name="content">
+
+        <h:form>
+
+            <p:panelGrid columns="2" styleClass="bottom-space">
+
+                <h:outputLabel for="login" value="Login:" />
+                <h:inputText id="login"
+                             value="#{login.username}"
+                             required="true"
+                             requiredMessage="Podaj login" />
+
+                <h:outputLabel for="pass" value="Password:" />
+                <h:inputSecret id="pass"
+                               value="#{login.password}"
+                               required="true"
+                               requiredMessage="Podaj hasło" />
+            </p:panelGrid>
+
+            <h:messages />
+
+            <h:commandButton value="Login"
+                             action="#{login.login}" styleClass="rounded-button ui-button-secondary"/>
+
+            <br/><br/>
+            <h:link value="Register" outcome="register" />
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
+
+</html>
